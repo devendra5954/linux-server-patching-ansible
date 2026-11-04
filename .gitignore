@@ -1,0 +1,18 @@
+# Actual server inventory
+inventory.ini
+
+# Backup files
+*.backup
+*.before-github
+
+# SSH private keys
+*.pem
+*.ppk
+*.key
+
+# Ansible temporary files
+*.retry
+
+# Python cache
+__pycache__/
+*.pyc

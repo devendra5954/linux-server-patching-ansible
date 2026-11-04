@@ -1,0 +1,50 @@
+
+---
+- name: Patch Ubuntu servers
+  hosts: ubuntu
+  become: true
+  gather_facts: true
+
+  tasks:
+    - name: Display server details
+      ansible.builtin.debug:
+        msg:
+          - "Hostname: {{ ansible_facts['hostname'] }}"
+          - "OS: {{ ansible_facts['distribution'] }} {{ ansible_facts['distribution_version'] }}"
+
+    - name: Update APT cache
+      ansible.builtin.apt:
+        update_cache: true
+        cache_valid_time: 3600
+
+    - name: Upgrade Ubuntu packages
+      ansible.builtin.apt:
+        upgrade: yes
+      register: ubuntu_patch_result
+
+    - name: Display Ubuntu patch result
+      ansible.builtin.debug:
+        var: ubuntu_patch_result.changed
+
+- name: Patch Amazon Linux servers
+  hosts: amazon_linux
+  become: true
+  gather_facts: true
+
+  tasks:
+    - name: Display server details
+      ansible.builtin.debug:
+        msg:
+          - "Hostname: {{ ansible_facts['hostname'] }}"
+          - "OS: {{ ansible_facts['distribution'] }} {{ ansible_facts['distribution_version'] }}"
+
+    - name: Upgrade Amazon Linux packages
+      ansible.builtin.dnf:
+        name: "*"
+        state: latest
+        update_cache: true
+      register: amazon_patch_result
+
+    - name: Display Amazon Linux patch result
+      ansible.builtin.debug:
+        var: amazon_patch_result.changed
