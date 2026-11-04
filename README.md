@@ -14,6 +14,21 @@ It supports both Ubuntu and Amazon Linux servers.
 - Managed Server 2: Ubuntu 26.04 LTS
 - Automation Tool: Ansible
 
+### Architecture Diagram
+
+```mermaid
+flowchart TB
+    A["Ansible Control Node<br/>Ubuntu 26.04<br/>Ansible Core 2.20"]
+    B["Amazon Linux 2023<br/>Managed Server 1"]
+    C["Ubuntu 26.04<br/>Managed Server 2"]
+
+    A -->|"SSH"| B
+    A -->|"SSH"| C
+
+    B --> D["DNF Package Updates"]
+    C --> E["APT Package Updates"]
+```
+
 ## Technologies Used
 
 - AWS EC2
