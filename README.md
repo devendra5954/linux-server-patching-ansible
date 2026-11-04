@@ -98,3 +98,11 @@ flowchart TB
 ## Author
 
 DevOps / Linux Administration Learning Project
+
+## Project Evidence
+
+### Ansible Connectivity Check
+
+This screenshot shows successful Ansible connectivity with both managed Linux servers.
+
+![Ansible Ping Success](screenshots/ansible-ping-success.png)
