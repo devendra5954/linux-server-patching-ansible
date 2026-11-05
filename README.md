@@ -106,3 +106,10 @@ DevOps / Linux Administration Learning Project
 This screenshot shows successful Ansible connectivity with both managed Linux servers.
 
 ![Ansible Ping Success](screenshots/ansible-ping-success.png)
+
+
+### Linux Server Patching Execution
+
+This screenshot shows successful Ansible patching execution on Ubuntu and Amazon Linux servers.
+
+![Patching Success](screenshots/patching-success.png)
