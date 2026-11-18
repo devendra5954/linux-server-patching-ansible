@@ -1,0 +1,26 @@
+---
+- name: Pre-Patching Server Health Check
+  hosts: linux_servers
+  become: yes
+  gather_facts: yes
+
+  tasks:
+
+    - name: Display server health information
+      debug:
+        msg:
+          - "Hostname: {{ ansible_facts['hostname'] }}"
+          - "Operating System: {{ ansible_facts['distribution'] }} {{ ansible_facts['distribution_version'] }}"
+          - "Kernel Version: {{ ansible_facts['kernel'] }}"
+          - "CPU Cores: {{ ansible_facts['processor_vcpus'] }}"
+          - "Total Memory: {{ ansible_facts['memtotal_mb'] }} MB"
+          - "Free Memory: {{ ansible_facts['memfree_mb'] }} MB"
+
+    - name: Check root filesystem usage
+      command: df -h /
+      register: disk_usage
+      changed_when: false
+
+    - name: Display disk usage
+      debug:
+        var: disk_usage.stdout_lines
